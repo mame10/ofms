@@ -21,14 +21,12 @@ Route::get('/', function () {
 Route::get('/ajout',[UserController::class,'ajout']);
 Route::post('/edit',[UserController::class,'editUser'])->name('register');
 
-Route::get('/home', [UserController::class,'index']);
+// Route::get('/home', [UserController::class,'index']);
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/home',[UserController::class,'index'])->name('dashboard');
 });
